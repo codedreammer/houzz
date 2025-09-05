@@ -102,3 +102,73 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+// Latest Stories Carousel
+class LatestStoriesCarousel {
+    constructor(container) {
+        this.container = container;
+        this.scrollContainer = container.querySelector('.latest-stories-grid');
+        this.prevBtn = container.querySelector('.latest-stories-nav--prev');
+        this.nextBtn = container.querySelector('.latest-stories-nav--next');
+        this.scrollAmount = 260;
+        this.autoScrollInterval = null;
+        this.scrollSpeed = 2; // pixels per frame
+        this.isScrolling = false;
+
+        this.init();
+    }
+
+    init() {
+        this.prevBtn.addEventListener('click', () => {
+            this.prev();
+            this.resetAutoScroll();
+        });
+        this.nextBtn.addEventListener('click', () => {
+            this.next();
+            this.resetAutoScroll();
+        });
+
+        this.startContinuousScroll();
+
+        this.container.addEventListener('mouseenter', () => this.pauseAutoScroll());
+        this.container.addEventListener('mouseleave', () => this.startContinuousScroll());
+    }
+
+    prev() {
+        this.scrollContainer.scrollBy({ left: -this.scrollAmount, behavior: 'smooth' });
+    }
+
+    next() {
+        this.scrollContainer.scrollBy({ left: this.scrollAmount, behavior: 'smooth' });
+    }
+
+    startContinuousScroll() {
+        if (this.isScrolling) return;
+        this.isScrolling = true;
+
+        const scroll = () => {
+            if (!this.isScrolling) return;
+
+            const maxScroll = this.scrollContainer.scrollWidth - this.scrollContainer.clientWidth;
+
+            if (this.scrollContainer.scrollLeft >= maxScroll) {
+                this.scrollContainer.scrollLeft = 0;
+            } else {
+                this.scrollContainer.scrollLeft += this.scrollSpeed;
+            }
+
+            requestAnimationFrame(scroll);
+        };
+
+        requestAnimationFrame(scroll);
+    }
+
+    pauseAutoScroll() {
+        this.isScrolling = false;
+    }
+
+    resetAutoScroll() {
+        this.pauseAutoScroll();
+        setTimeout(() => this.startContinuousScroll(), 1000);
+    }
+}
