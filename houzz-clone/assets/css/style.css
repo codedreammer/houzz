@@ -1,0 +1,306 @@
+@import "tailwindcss";
+
+/* Custom styles for the Houzz clone */
+
+.hero-bg {
+    background-image: url('../images/up1.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+/* Ensure the design system colors are consistent */
+:root {
+    --houzz-green: hsl(95, 35%, 47%);
+    --houzz-dark: hsl(210, 12%, 16%);
+    --houzz-gray: hsl(210, 10%, 57%);
+    --houzz-light-gray: hsl(210, 17%, 96%);
+}
+
+/* Custom focus styles for better accessibility */
+input:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--houzz-green);
+}
+
+button:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--houzz-green);
+}
+
+/* Smooth transitions */
+* {
+    transition: all 0.3s ease;
+}
+
+/* Hamburger Button Styles */
+.background {
+    border-radius: 8px;
+    background: transparent;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+}
+
+.menu__icon {
+    width: 24px;
+    height: 24px;
+    padding: 2px;
+}
+
+.menu__icon span {
+    display: block;
+    width: 100%;
+    height: 0.125rem;
+    border-radius: 2px;
+    background-color: rgb(0, 122, 255);
+    box-shadow: 0 .5px 2px 0 hsla(0, 0%, 0%, .2);
+    transition: background-color .4s;
+    position: relative;
+}
+
+.menu__icon span+span {
+    margin-top: .375rem;
+}
+
+.menu__icon span:nth-child(1) {
+    animation: ease .8s menu-icon-top-2 forwards;
+}
+
+.menu__icon span:nth-child(2) {
+    animation: ease .8s menu-icon-scaled-2 forwards;
+}
+
+.menu__icon span:nth-child(3) {
+    animation: ease .8s menu-icon-bottom-2 forwards;
+}
+
+.menu__icon:hover span:nth-child(1) {
+    animation: ease .8s menu-icon-top forwards;
+}
+
+.menu__icon:hover span:nth-child(2) {
+    animation: ease .8s menu-icon-scaled forwards;
+}
+
+.menu__icon:hover span:nth-child(3) {
+    animation: ease .8s menu-icon-bottom forwards;
+    background-color: rgb(255, 59, 48);
+}
+
+@keyframes menu-icon-top {
+    0% {
+        top: 0;
+        transform: rotate(0);
+    }
+    50% {
+        top: .5rem;
+        transform: rotate(0);
+    }
+    100% {
+        top: .5rem;
+        transform: rotate(45deg);
+    }
+}
+
+@keyframes menu-icon-top-2 {
+    0% {
+        top: .5rem;
+        transform: rotate(45deg);
+    }
+    50% {
+        top: .5rem;
+        transform: rotate(0);
+    }
+    100% {
+        top: 0;
+        transform: rotate(0);
+    }
+}
+
+@keyframes menu-icon-bottom {
+    0% {
+        bottom: 0;
+        transform: rotate(0);
+    }
+    50% {
+        bottom: .5rem;
+        transform: rotate(0);
+    }
+    100% {
+        bottom: .5rem;
+        transform: rotate(135deg);
+    }
+}
+
+@keyframes menu-icon-bottom-2 {
+    0% {
+        bottom: .5rem;
+        transform: rotate(135deg);
+    }
+    50% {
+        bottom: .5rem;
+        transform: rotate(0);
+    }
+    100% {
+        bottom: 0;
+        transform: rotate(0);
+    }
+}
+
+@keyframes menu-icon-scaled {
+    50% {
+        transform: scale(0);
+    }
+    100% {
+        transform: scale(0);
+    }
+}
+
+@keyframes menu-icon-scaled-2 {
+    0% {
+        transform: scale(0);
+    }
+    50% {
+        transform: scale(0);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .hero-section {
+        flex-direction: column;
+    }
+    
+    .hero-bg {
+        min-height: 50vh;
+    }
+    
+    h1 {
+        font-size: 2rem;
+    }
+    
+    h2 {
+        font-size: 2rem;
+    }
+}
+
+/* Main content styles */
+.main-content {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+.main-content h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 32px;
+    font-family: 'Biotif Pro Semi Bold', Arial, sans-serif;
+}
+
+.main-content .top-section {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.main-content .card {
+    position: relative;
+    width: 400px;
+    height: 240px;
+    overflow: hidden;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.main-content .card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.main-content .card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.main-content .card:hover img {
+    transform: scale(1.1);
+}
+
+.main-content .card button {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.main-content .card button:hover {
+    background: #f0f0f0;
+}
+
+.main-content .room-grid {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.main-content .room-card {
+    width: 240px;
+    height: 160px;
+    border-radius: 10px;
+    overflow: hidden;
+    text-align: center;
+    background: #fff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.main-content .room-card img {
+    width: 100%;
+    height: 80%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.main-content .room-card p {
+    margin: 5px 0;
+    font-weight: bold;
+}
+
+.main-content .room-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.main-content .room-card:hover img {
+    transform: scale(1.1);
+}
+
+/* Mobile search box for small screens */
+@media (max-width: 480px) {
+    .navbar-search {
+        display: flex !important;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        max-width: 200px;
+        z-index: 10;
+    }
+}
