@@ -53,18 +53,145 @@
 
                 <!-- Desktop Navigation -->
                 <nav class="hidden md:flex items-center space-x-8">
-                    <button class="flex items-center space-x-1 px-3 py-2 text-gray-700 hover:text-houzz-green hover:shadow-md hover:bg-gray-50 rounded-full transition-all duration-200">
-                        <span>Photos</span>
-                        <ion-icon name="chevron-down-outline"></ion-icon>
-                    </button>
-                    <button class="flex items-center space-x-1 px-3 py-2 text-gray-700 hover:text-houzz-green hover:shadow-md hover:bg-gray-50 rounded-full transition-all duration-200">
-                        <span>Find Professionals</span>
-                        <ion-icon name="chevron-down-outline"></ion-icon>
-                    </button>
-                    <button class="flex items-center space-x-1 px-3 py-2 text-gray-700 hover:text-houzz-green hover:shadow-md hover:bg-gray-50 rounded-full transition-all duration-200">
-                        <span>Advice</span>
-                        <ion-icon name="chevron-down-outline"></ion-icon>
-                    </button>
+                    <div class="relative group">
+                        <button class="flex items-center space-x-1 px-3 py-2 text-gray-700 hover:text-houzz-green hover:shadow-md hover:bg-gray-50 rounded-full transition-all duration-200">
+                            <span>Photos</span>
+                            <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </button>
+                        <!-- Photos Dropdown -->
+                        <div class="absolute top-full left-0 mt-2 w-96 bg-white border border-gray-200 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                            <div class="p-6 grid grid-cols-3 gap-6">
+                                <div>
+                                    <h3 class="font-semibold text-gray-900 mb-3">Kitchen & Dining</h3>
+                                    <ul class="space-y-2">
+                                        <li><a href="#" class="text-gray-600 hover:text-houzz-green text-sm">Kitchen</a></li>
+                                        <li><a href="#" class="text-gray-600 hover:text-houzz-green text-sm">Modular Kitchen</a></li>
+                                        <li><a href="#" class="text-gray-600 hover:text-houzz-green text-sm">Dining Room</a></li>
+                                        <li><a href="#" class="text-gray-600 hover:text-houzz-green text-sm">Home Bar</a></li>
+                                    </ul>
+                                    <h3 class="font-semibold text-gray-900 mb-3 mt-6">Living</h3>
+                                    <ul class="space-y-2">
+                                        <li><a href="#" class="text-gray-600 hover:text-houzz-green text-sm">Living Room</a></li>
+                                        <li><a href="#" class="text-gray-600 hover:text-houzz-green text-sm">Home Theater</a></li>
+                                        <li><a href="#" class="text-gray-600 hover:text-houzz-green text-sm">Home Office</a></li>
+                                        <li><a href="#" class="text-gray-600 hover:text-houzz-green text-sm">Staircase</a></li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-gray-900 mb-3">Bed & Bath</h3>
+                                    <ul class="space-y-2">
+                                        <li><a href="#" class="text-gray-600 hover:text-houzz-green text-sm">Bedroom</a></li>
+                                        <li><a href="#" class="text-gray-600 hover:text-houzz-green text-sm">Nursery</a></li>
+                                        <li><a href="#" class="text-gray-600 hover:text-houzz-green text-sm">Kid's Room</a></li>
+                                        <li><a href="#" class="text-gray-600 hover:text-houzz-green text-sm">Bathroom</a></li>
+                                    </ul>
+                                    <h3 class="font-semibold text-gray-900 mb-3 mt-6">Outdoor</h3>
+                                    <ul class="space-y-2">
+                                        <li><a href="#" class="text-gray-600 hover:text-houzz-green text-sm">Garden</a></li>
+                                        <li><a href="#" class="text-gray-600 hover:text-houzz-green text-sm">Patio</a></li>
+                                        <li><a href="#" class="text-gray-600 hover:text-houzz-green text-sm">Terrace & Balcony</a></li>
+                                        <li><a href="#" class="text-gray-600 hover:text-houzz-green text-sm">Courtyard</a></li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-gray-900 mb-3">More Rooms</h3>
+                                    <ul class="space-y-2">
+                                        <li><a href="#" class="text-gray-600 hover:text-houzz-green text-sm">Puja Room</a></li>
+                                        <li><a href="#" class="text-gray-600 hover:text-houzz-green text-sm">Wardrobe</a></li>
+                                        <li><a href="#" class="text-gray-600 hover:text-houzz-green text-sm">Exterior</a></li>
+                                        <li><a href="#" class="text-gray-600 hover:text-houzz-green text-sm">Swimming Pool</a></li>
+                                        <li><a href="#" class="text-houzz-green hover:text-houzz-green font-medium text-sm mt-4">View All</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="relative group">
+                        <button class="flex items-center space-x-1 px-3 py-2 text-gray-700 hover:text-houzz-green hover:shadow-md hover:bg-gray-50 rounded-full transition-all duration-200">
+                            <span>Find Professionals</span>
+                            <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </button>
+                        <!-- Find Professionals Dropdown -->
+                        <div class="absolute top-full left-0 mt-2 w-80 bg-white border border-gray-200 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                            <div class="p-6 grid grid-cols-2 gap-6">
+                                <div>
+                                    <h3 class="font-semibold text-gray-900 mb-3">DESIGN & RENOVATION</h3>
+                                    <ul class="space-y-2">
+                                        <li><a href="#" class="text-gray-600 hover:text-houzz-green text-sm">Architects & Building Designers</a></li>
+                                        <li><a href="#" class="text-gray-600 hover:text-houzz-green text-sm">Interior Designers & Decorators</a></li>
+                                        <li><a href="#" class="text-gray-600 hover:text-houzz-green text-sm">Civil Engineers & Contractors</a></li>
+                                        <li><a href="#" class="text-gray-600 hover:text-houzz-green text-sm">Design-Build Firms</a></li>
+                                        <li><a href="#" class="text-gray-600 hover:text-houzz-green text-sm">Kitchen & Bath Designers</a></li>
+                                        <li><a href="#" class="text-gray-600 hover:text-houzz-green text-sm">Landscape Architects & Contractors</a></li>
+                                        <li><a href="#" class="text-gray-600 hover:text-houzz-green text-sm">Home Builders & Construction Companies</a></li>
+                                        <li><a href="#" class="text-gray-600 hover:text-houzz-green text-sm">Photographers</a></li>
+                                        <li><a href="#" class="text-gray-600 hover:text-houzz-green text-sm">Specialty Contractors</a></li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-gray-900 mb-3">HOME IMPROVEMENT</h3>
+                                    <ul class="space-y-2">
+                                        <li><a href="#" class="text-gray-600 hover:text-houzz-green text-sm">Furniture & Accessories</a></li>
+                                        <li><a href="#" class="text-gray-600 hover:text-houzz-green text-sm">Flooring & Carpet</a></li>
+                                        <li><a href="#" class="text-gray-600 hover:text-houzz-green text-sm">Tile, Stone & Countertop</a></li>
+                                        <li><a href="#" class="text-gray-600 hover:text-houzz-green text-sm">Bedding & Bath</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="relative group">
+                        <button class="flex items-center space-x-1 px-3 py-2 text-gray-700 hover:text-houzz-green hover:shadow-md hover:bg-gray-50 rounded-full transition-all duration-200">
+                            <span>Advice</span>
+                            <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </button>
+                        <!-- Advice Dropdown -->
+                        <div class="absolute top-full left-0 mt-2 w-96 bg-white border border-gray-200 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                            <div class="p-6 grid grid-cols-3 gap-6">
+                                <div>
+                                    <h3 class="font-semibold text-gray-900 mb-3">Stories From Houzz</h3>
+                                    <ul class="space-y-2">
+                                        <li><a href="#" class="text-gray-600 hover:text-houzz-green text-sm">Houzz Tours</a></li>
+                                        <li><a href="#" class="text-gray-600 hover:text-houzz-green text-sm">Kitchen Guides</a></li>
+                                        <li><a href="#" class="text-gray-600 hover:text-houzz-green text-sm">Bathroom Guides</a></li>
+                                        <li><a href="#" class="text-gray-600 hover:text-houzz-green text-sm">Bedroom Guides</a></li>
+                                        <li><a href="#" class="text-gray-600 hover:text-houzz-green text-sm">Decorating Guides</a></li>
+                                        <li><a href="#" class="text-gray-600 hover:text-houzz-green text-sm">Outdoors</a></li>
+                                        <li><a href="#" class="text-gray-600 hover:text-houzz-green text-sm">Architecture</a></li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-gray-900 mb-3">Houzz Discussions</h3>
+                                    <ul class="space-y-2">
+                                        <li><a href="#" class="text-gray-600 hover:text-houzz-green text-sm">Design Dilemma</a></li>
+                                        <li><a href="#" class="text-gray-600 hover:text-houzz-green text-sm">Before & After</a></li>
+                                        <li><a href="#" class="text-gray-600 hover:text-houzz-green text-sm">Polls</a></li>
+                                        <li><a href="#" class="text-gray-600 hover:text-houzz-green text-sm">Home Decorating</a></li>
+                                        <li><a href="#" class="text-gray-600 hover:text-houzz-green text-sm">Kitchens</a></li>
+                                        <li><a href="#" class="text-gray-600 hover:text-houzz-green text-sm">Living Rooms</a></li>
+                                        <li><a href="#" class="text-gray-600 hover:text-houzz-green text-sm">Bedrooms</a></li>
+                                        <li><a href="#" class="text-gray-600 hover:text-houzz-green text-sm">Dining Rooms</a></li>
+                                        <li><a href="#" class="text-gray-600 hover:text-houzz-green text-sm">Exterior</a></li>
+                                        <li><a href="#" class="text-gray-600 hover:text-houzz-green text-sm">Lighting</a></li>
+                                        <li><a href="#" class="text-gray-600 hover:text-houzz-green text-sm">Paint</a></li>
+                                        <li><a href="#" class="text-gray-600 hover:text-houzz-green text-sm">Building a Home</a></li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-gray-900 mb-3">Houzz TV</h3>
+                                    <ul class="space-y-2">
+                                        <li><a href="#" class="text-gray-600 hover:text-houzz-green text-sm">Houzz Research</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </nav>
 
                 <!-- Search Bar -->
