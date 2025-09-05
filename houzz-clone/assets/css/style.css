@@ -188,6 +188,29 @@ button:focus {
     h2 {
         font-size: 2rem;
     }
+    
+    .main-content .top-section {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .main-content .room-section-wrapper {
+        gap: 10px;
+    }
+    
+    .carousel-arrow {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .chevron-left,
+    .chevron-right {
+        font-size: 20px;
+    }
+    
+    .main-content .room-grid .room-card {
+        width: 200px;
+    }
 }
 
 /* Main content styles */
@@ -208,6 +231,61 @@ button:focus {
     justify-content: center;
     gap: 20px;
     margin-bottom: 40px;
+}
+
+.main-content .room-section-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    position: relative;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Carousel Navigation Buttons */
+.carousel-nav {
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    z-index: 10;
+    transition: opacity 0.3s ease;
+    flex-shrink: 0;
+}
+
+.carousel-nav:hover {
+    opacity: 0.8;
+}
+
+.carousel-nav:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--houzz-green);
+}
+
+.carousel-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+}
+
+.carousel-nav:hover .carousel-arrow {
+    background: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05);
+}
+
+.chevron-left,
+.chevron-right {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    line-height: 1;
 }
 
 .main-content .card {
@@ -256,9 +334,22 @@ button:focus {
 
 .main-content .room-grid {
     display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
     gap: 20px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    flex: 1;
+    padding: 10px 0;
+}
+
+.main-content .room-grid::-webkit-scrollbar {
+    display: none;
+}
+
+.main-content .room-grid .room-card {
+    flex-shrink: 0;
+    width: 240px;
 }
 
 .main-content .room-card {
