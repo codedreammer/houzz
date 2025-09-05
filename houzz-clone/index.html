@@ -21,6 +21,103 @@
     </script>
     <link rel="stylesheet" href="assets/css/style.css">
     <link href="assets/css/output.css" rel="stylesheet">
+    <link href="assets/css/latest-stories.css" rel="stylesheet">
+    <style>
+        .auto-scroll-carousel {
+            overflow: hidden;
+            position: relative;
+        }
+        .auto-scroll-carousel .room-grid {
+            display: flex;
+            animation: autoScroll 30s linear infinite;
+            width: max-content;
+        }
+        .auto-scroll-carousel .room-card,
+        .auto-scroll-carousel .style-card,
+        .auto-scroll-carousel .video-card {
+            flex-shrink: 0;
+            margin-right: 20px;
+        }
+        .auto-scroll-carousel .room-grid:hover {
+            animation-play-state: paused;
+        }
+        @keyframes autoScroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .auto-scroll-carousel .story-card {
+            flex-shrink: 0;
+            margin-right: 20px;
+        }
+        .auto-scroll-carousel .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+        }
+        .auto-scroll-carousel .carousel-nav--prev {
+            left: 0;
+        }
+        .auto-scroll-carousel .carousel-nav--next {
+            right: 0;
+        }
+        .style-card {
+            width: 150px;
+            height: 150px;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+        }
+        .style-card .style-image {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+        .style-card .style-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .style-card .style-title {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+            z-index: 2;
+        }
+        .style-card .style-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: 1;
+        }
+        .video-card {
+            width: 300px;
+            height: 200px;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+        }
+        .video-card .video-image {
+            width: 100%;
+            height: 60%;
+            position: relative;
+        }
+        .video-card .video-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .video-card .card-content {
+            height: 40%;
+            padding: 10px;
+        }
+    </style>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </head>
@@ -210,12 +307,12 @@
 
                 <!-- Auth Buttons -->
                 <div class="flex items-center space-x-4">
-                    <button class="hidden sm:inline-flex items-center space-x-2 px-4 py-2 text-gray-700 hover:text-houzz-green transition-colors">
+                    <a href="signin.html" class="hidden sm:inline-flex items-center space-x-2 px-4 py-2 text-gray-700 hover:text-houzz-green transition-colors">
                         <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
                         </svg>
                         <span>Sign In</span>
-                    </button>
+                    </a>
                     <button class="hidden sm:inline-flex items-center space-x-2 px-4 py-2 border border-houzz-green text-houzz-green hover:bg-houzz-green hover:text-white rounded-md transition-colors">
                         <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4a2 2 0 00-2-2H8a2 2 0 00-2 2v2M4 6v12a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2z"/>
@@ -438,7 +535,7 @@
 
 <h2>Browse Ideas by Room</h2>
 <div class="room-section">
-<div class="room-section-wrapper">
+<div class="room-section-wrapper auto-scroll-carousel">
     <button class="carousel-nav carousel-nav--prev" aria-label="Previous">
         <span class="carousel-arrow carousel-arrow--left">
             <span class="chevron-left" aria-hidden="true">‹</span>
@@ -502,6 +599,31 @@
             <img src="https://images.unsplash.com/photo-1622912058707-1b33af81db4f?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8Y29ycmlkb3IlMjBkZXNpZ258ZW58MHx8MHx8fDA%3D" alt="Corridor">
             <p>Corridor</p>
         </div>
+        <!-- Duplicate cards for seamless loop -->
+        <div class="room-card">
+            <img src="https://images.unsplash.com/photo-1600489000022-c2086d79f9d4?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Kitchen">
+            <p>Kitchen</p>
+        </div>
+        <div class="room-card">
+            <img src="https://plus.unsplash.com/premium_photo-1676823570606-4398fb1415ab?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8YmF0aCUyMGRlc2lnbnxlbnwwfHwwfHx8MA%3D%3D" alt="Bath">
+            <p>Bath</p>
+        </div>
+        <div class="room-card">
+            <img src="https://media.istockphoto.com/id/1191685303/photo/stylish-bedroom-interior-in-trendy-blue.webp?a=1&b=1&s=612x612&w=0&k=20&c=f3bNKflpzVIlj2b2u2GafbtTe5OxeobSwbgyf-s52bg=" alt="Bedroom">
+            <p>Bedroom</p>
+        </div>
+        <div class="room-card">
+            <img src="https://images.unsplash.com/photo-1659938425098-6788938c89de?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8bGVhdmluZyUyMHJvb20lMjBkZXNpZ258ZW58MHx8MHx8fDA%3D" alt="Living">
+            <p>Living</p>
+        </div>
+        <div class="room-card">
+            <img src="https://images.unsplash.com/photo-1706820229870-f9a8c6dac193?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8ZGluaW5nJTIwcm9vbSUyMGRlc2lnbnxlbnwwfHwwfHx8MA%3D%3D" alt="Dining">
+            <p>Dining</p>
+        </div>
+        <div class="room-card">
+            <img src="https://images.unsplash.com/photo-1613685302957-3a6fc45346ef?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8b3V0ZG9vciUyMGRlc2lnbnxlbnwwfHwwfHx8MA%3D%3D" alt="Outdoor">
+            <p>Outdoor</p>
+        </div>
     </div>
     
     <button class="carousel-nav carousel-nav--next" aria-label="Next">
@@ -512,6 +634,539 @@
 </div>
 </section>
 
+<!-- Main Content -->
+<main class="main">
+    <div class="container">
+        
+        <!-- Latest Stories Section -->
+        <section class="section">
+            <div class="section-header">
+                <h2 class="section-title">Latest Stories</h2>
+                <button class="see-all-btn">See All</button>
+            </div>
+            <div class="room-section-wrapper auto-scroll-carousel">
+                <button class="carousel-nav carousel-nav--prev" aria-label="Previous">
+                    <span class="carousel-arrow carousel-arrow--left">
+                        <span class="chevron-left" aria-hidden="true">‹</span>
+                    </span>
+                </button>
+                
+                <div class="room-grid">
+                    <div class="story-card">
+                        <div class="card-image">
+                            <img src="https://images.unsplash.com/photo-1602028915047-37269d1a73f7?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8a2l0Y2hlbiUyMGRlc2lnbnxlbnwwfHwwfHx8MA%3D%3D" alt="Kitchen Design">
+                        </div>
+                        <div class="card-content">
+                            <span class="card-category">Popular</span>
+                            <h3 class="card-title">10 Key Kitchen Dimensions You Need to Know</h3>
+                        </div>
+                    </div>
+                    <div class="story-card">
+                        <div class="card-image">
+                            <img src="https://i.pinimg.com/1200x/98/a6/9f/98a69f338962c192dea6d3258c2bd109.jpg" alt="Puja Room">
+                        </div>
+                        <div class="card-content">
+                            <span class="card-category">Popular</span>
+                            <h3 class="card-title">35 Serene Puja Room Designs</h3>
+                        </div>
+                    </div>
+                    <div class="story-card">
+                        <div class="card-image">
+                            <img src="https://images.unsplash.com/photo-1632119580908-ae947d4c7691?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8bGl2aW5nJTIwcm9vbSUyMGRlc2lnbnxlbnwwfHwwfHx8MA%3D%3D" alt="Living Room">
+                        </div>
+                        <div class="card-content">
+                            <span class="card-category">Popular</span>
+                            <h3 class="card-title">What Are the Benefits of Hiring an Interior Designer?</h3>
+                        </div>
+                    </div>
+                    <div class="story-card">
+                        <div class="card-image">
+                            <img src="https://images.unsplash.com/photo-1651415223860-1a4bf68510c4?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YmF0aCUyMHJvb20lMjAlMjBkZXNpZ258ZW58MHx8MHx8fDA%3D" alt="Bathroom Design">
+                        </div>
+                        <div class="card-content">
+                            <span class="card-category">Trending</span>
+                            <h3 class="card-title">Modern Bathroom Design Ideas for Small Spaces</h3>
+                        </div>
+                    </div>
+                    <div class="story-card">
+                        <div class="card-image">
+                            <img src="https://media.istockphoto.com/id/1213695547/photo/3d-rendering-of-an-elegant-bedroom.webp?a=1&b=1&s=612x612&w=0&k=20&c=jswcSM68zoLPkx-BAfIGp1gedm_Zx4O-DElOKp4LrGo=" alt="Bedroom Design">
+                        </div>
+                        <div class="card-content">
+                            <span class="card-category">Featured</span>
+                            <h3 class="card-title">Creating a Cozy Bedroom Retreat</h3>
+                        </div>
+                    </div>
+                    <div class="story-card">
+                        <div class="card-image">
+                            <img src="https://images.unsplash.com/photo-1634389312178-50613e56acda?q=80&w=1172&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Dining Room">
+                        </div>
+                        <div class="card-content">
+                            <span class="card-category">Popular</span>
+                            <h3 class="card-title">Dining Room Lighting: A Complete Guide</h3>
+                        </div>
+                    </div>
+                    <div class="story-card">
+                        <div class="card-image">
+                            <img src="https://images.unsplash.com/photo-1600494603989-9650cf6ddd3d?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Home Office">
+                        </div>
+                        <div class="card-content">
+                            <span class="card-category">Trending</span>
+                            <h3 class="card-title">Work From Home: Office Design Tips</h3>
+                        </div>
+                    </div>
+                    <div class="story-card">
+                        <div class="card-image">
+                            <img src="https://images.unsplash.com/photo-1662557499709-a8d7ef6d7d5e?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8b3V0ZG9vciUyMGhvbWUlMjBkZXNpZ258ZW58MHx8MHx8fDA%3D" alt="Outdoor Space">
+                        </div>
+                        <div class="card-content">
+                            <span class="card-category">Featured</span>
+                            <h3 class="card-title">Transform Your Outdoor Living Space</h3>
+                        </div>
+                    </div>
+                    <div class="story-card">
+                        <div class="card-image">
+                            <img src="https://plus.unsplash.com/premium_photo-1661490714989-eaf4ce8e1129?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8a2lkcyUyMHJvb20lMjBkZXNpZ258ZW58MHx8MHx8fDA%3D" alt="Kids Room">
+                        </div>
+                        <div class="card-content">
+                            <span class="card-category">Popular</span>
+                            <h3 class="card-title">Creative Kids Room Storage Solutions</h3>
+                        </div>
+                    </div>
+                    <div class="story-card">
+                        <div class="card-image">
+                            <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=958&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Interior Design">
+                        </div>
+                        <div class="card-content">
+                            <span class="card-category">Trending</span>
+                            <h3 class="card-title">Color Psychology in Interior Design</h3>
+                        </div>
+                    </div>
+                    <!-- Duplicate cards for seamless loop -->
+                    <div class="story-card">
+                        <div class="card-image">
+                            <img src="https://images.unsplash.com/photo-1602028915047-37269d1a73f7?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8a2l0Y2hlbiUyMGRlc2lnbnxlbnwwfHwwfHx8MA%3D%3D" alt="Kitchen Design">
+                        </div>
+                        <div class="card-content">
+                            <span class="card-category">Popular</span>
+                            <h3 class="card-title">10 Key Kitchen Dimensions You Need to Know</h3>
+                        </div>
+                    </div>
+                    <div class="story-card">
+                        <div class="card-image">
+                            <img src="https://i.pinimg.com/1200x/98/a6/9f/98a69f338962c192dea6d3258c2bd109.jpg" alt="Puja Room">
+                        </div>
+                        <div class="card-content">
+                            <span class="card-category">Popular</span>
+                            <h3 class="card-title">35 Serene Puja Room Designs</h3>
+                        </div>
+                    </div>
+                    <div class="story-card">
+                        <div class="card-image">
+                            <img src="https://images.unsplash.com/photo-1632119580908-ae947d4c7691?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8bGl2aW5nJTIwcm9vbSUyMGRlc2lnbnxlbnwwfHwwfHx8MA%3D%3D" alt="Living Room">
+                        </div>
+                        <div class="card-content">
+                            <span class="card-category">Popular</span>
+                            <h3 class="card-title">What Are the Benefits of Hiring an Interior Designer?</h3>
+                        </div>
+                    </div>
+                    <div class="story-card">
+                        <div class="card-image">
+                            <img src="https://images.unsplash.com/photo-1651415223860-1a4bf68510c4?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YmF0aCUyMHJvb20lMjAlMjBkZXNpZ258ZW58MHx8MHx8fDA%3D" alt="Bathroom Design">
+                        </div>
+                        <div class="card-content">
+                            <span class="card-category">Trending</span>
+                            <h3 class="card-title">Modern Bathroom Design Ideas for Small Spaces</h3>
+                        </div>
+                    </div>
+                    <div class="story-card">
+                        <div class="card-image">
+                            <img src="https://media.istockphoto.com/id/1213695547/photo/3d-rendering-of-an-elegant-bedroom.webp?a=1&b=1&s=612x612&w=0&k=20&c=jswcSM68zoLPkx-BAfIGp1gedm_Zx4O-DElOKp4LrGo=" alt="Bedroom Design">
+                        </div>
+                        <div class="card-content">
+                            <span class="card-category">Featured</span>
+                            <h3 class="card-title">Creating a Cozy Bedroom Retreat</h3>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="carousel-nav carousel-nav--next" aria-label="Next">
+                    <span class="carousel-arrow carousel-arrow--right">
+                        <span class="chevron-right" aria-hidden="true">›</span>
+                    </span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Browse Photos by Style Section -->
+        <section class="section">
+            <div class="section-header">
+                <h2 class="section-title">Browse Photos by Style</h2>
+            </div>
+            <div class="room-section-wrapper auto-scroll-carousel">
+                <button class="carousel-nav carousel-nav--prev" aria-label="Previous">
+                    <span class="carousel-arrow carousel-arrow--left">
+                        <span class="chevron-left" aria-hidden="true">‹</span>
+                    </span>
+                </button>
+                
+                <div class="room-grid">
+                    <div class="style-card">
+                        <div class="style-image">
+                            <img src="https://plus.unsplash.com/premium_photo-1691031428827-adf34ee712d4?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGluZGlhbiUyMGhvdXNlJTIwZGVzaWdufGVufDB8fDB8fHww" alt="Indian Style">
+                            <div class="style-overlay"></div>
+                            <h3 class="style-title">Indian</h3>
+                        </div>
+                    </div>
+                    <div class="style-card">
+                        <div class="style-image">
+                            <img src="https://plus.unsplash.com/premium_photo-1661883964999-c1bcb57a7357?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8bW9yZGVyJTIwaG91c2UlMjBkZXNpZ258ZW58MHx8MHx8fDA%3D" alt="Modern Style">
+                            <div class="style-overlay"></div>
+                            <h3 class="style-title">Modern</h3>
+                        </div>
+                    </div>
+                    <div class="style-card">
+                        <div class="style-image">
+                            <img src="https://images.unsplash.com/photo-1742329472603-efb5275ebcf6?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8RWNsZWN0aWMlMjBTdHlsZSUyMGhvdXNlJTIwZGVzaWdufGVufDB8fDB8fHww" alt="Eclectic Style">
+                            <div class="style-overlay"></div>
+                            <h3 class="style-title">Eclectic</h3>
+                        </div>
+                    </div>
+                    <div class="style-card">
+                        <div class="style-image">
+                            <img src="https://st.hzcdn.com/fimgs/pictures/bedrooms/south-coogee-house-capital-building-img~1ab16f760122f5ad_4005-1-a1db7e9-w154-h102-b0-p0.jpg" alt="Contemporary Style">
+                            <div class="style-overlay"></div>
+                            <h3 class="style-title">Contemporary</h3>
+                        </div>
+                    </div>
+                    <div class="style-card">
+                        <div class="style-image">
+                            <img src="https://images.unsplash.com/photo-1625517236224-4eba7b2e47b5?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8VHJhZGl0aW9uYWwlMjBTdHlsJTIwaG91c2UlMjBkZXNpZ258ZW58MHx8MHx8fDA%3D" alt="Traditional Style">
+                            <div class="style-overlay"></div>
+                            <h3 class="style-title">Traditional</h3>
+                        </div>
+                    </div>
+                    <div class="style-card">
+                        <div class="style-image">
+                            <img src="https://images.unsplash.com/photo-1609391537609-607491c91819?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8TWluaW1hbGlzdCUyMFN0eWxlJTIwaG91c2UlMjBkZXNpZ258ZW58MHx8MHx8fDA%3D" alt="Minimalist Style">
+                            <div class="style-overlay"></div>
+                            <h3 class="style-title">Minimalist</h3>
+                        </div>
+                    </div>
+                    <div class="style-card">
+                        <div class="style-image">
+                            <img src="https://plus.unsplash.com/premium_photo-1684338795288-097525d127f0?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8UnVzdGljJTIwU3R5bGUlMjBob3VzZSUyMGRlc2lnbnxlbnwwfHwwfHx8MA%3D%3D" alt="Rustic Style">
+                            <div class="style-overlay"></div>
+                            <h3 class="style-title">Rustic</h3>
+                        </div>
+                    </div>
+                    <div class="style-card">
+                        <div class="style-image">
+                            <img src="https://images.unsplash.com/photo-1721815693498-cc28507c0ba2?q=80&w=1160&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Industrial Style">
+                            <div class="style-overlay"></div>
+                            <h3 class="style-title">Industrial</h3>
+                        </div>
+                    </div>
+                    <div class="style-card">
+                        <div class="style-image">
+                            <img src="https://images.unsplash.com/photo-1610155180433-9994da6a323b?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8U2NhbmRpbmF2aWFuJTIwU3R5bGUlMjBob3VzZXxlbnwwfHwwfHx8MA%3D%3D" alt="Scandinavian Style">
+                            <div class="style-overlay"></div>
+                            <h3 class="style-title">Scandinavian</h3>
+                        </div>
+                    </div>
+                    <div class="style-card">
+                        <div class="style-image">
+                            <img src="https://images.unsplash.com/photo-1614368168264-0b462344e4ef?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Qm9oZW1pYW4lMjBTdHlsZSUyMGhvdXNlfGVufDB8fDB8fHww" alt="Bohemian Style">
+                            <div class="style-overlay"></div>
+                            <h3 class="style-title">Bohemian</h3>
+                        </div>
+                    </div>
+                    <div class="style-card">
+                        <div class="style-image">
+                            <img src="https://plus.unsplash.com/premium_photo-1684175656154-ac52b3cc2c60?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8QXJ0JTIwRGVjbyUyMFN0eWxlJTIwaG91c2V8ZW58MHx8MHx8fDA%3D" alt="Art Deco Style">
+                            <div class="style-overlay"></div>
+                            <h3 class="style-title">Art Deco</h3>
+                        </div>
+                    </div>
+                    <div class="style-card">
+                        <div class="style-image">
+                            <img src="https://images.unsplash.com/photo-1565530692357-651759e24fb6?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8TWVkaXRlcnJhbmVhbiUyMFN0eWxlJTIwaG91c2V8ZW58MHx8MHx8fDA%3D" alt="Mediterranean Style">
+                            <div class="style-overlay"></div>
+                            <h3 class="style-title">Mediterranean</h3>
+                        </div>
+                    </div>
+                    <div class="style-card">
+                        <div class="style-image">
+                            <img src="https://plus.unsplash.com/premium_photo-1733760125038-06564d0a4568?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8RmFybWhvdXNlJTIwU3R5bGUlMjBob3VzZXxlbnwwfHwwfHx8MA%3D%3D" alt="Farmhouse Style">
+                            <div class="style-overlay"></div>
+                            <h3 class="style-title">Farmhouse</h3>
+                        </div>
+                    </div>
+                    <!-- Duplicate cards for seamless loop -->
+                    <div class="style-card">
+                        <div class="style-image">
+                            <img src="https://plus.unsplash.com/premium_photo-1691031428827-adf34ee712d4?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGluZGlhbiUyMGhvdXNlJTIwZGVzaWdufGVufDB8fDB8fHww" alt="Indian Style">
+                            <div class="style-overlay"></div>
+                            <h3 class="style-title">Indian</h3>
+                        </div>
+                    </div>
+                    <div class="style-card">
+                        <div class="style-image">
+                            <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8bW9kZXJuJTIwaG91c2UlMjBkZXNpZ258ZW58MHx8MHx8fDA%3D" alt="Modern Style">
+                            <div class="style-overlay"></div>
+                            <h3 class="style-title">Modern</h3>
+                        </div>
+                    </div>
+                    <div class="style-card">
+                        <div class="style-image">
+                            <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZWNsZWN0aWMlMjBob3VzZSUyMGRlc2lnbnxlbnwwfHwwfHx8MA%3D%3D" alt="Eclectic Style">
+                            <div class="style-overlay"></div>
+                            <h3 class="style-title">Eclectic</h3>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="carousel-nav carousel-nav--next" aria-label="Next">
+                    <span class="carousel-arrow carousel-arrow--right">
+                        <span class="chevron-right" aria-hidden="true">›</span>
+                    </span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Houzz TV Section -->
+        <section class="section">
+            <div class="section-header">
+                <h2 class="section-title">Houzz TV</h2>
+                <button class="see-all-btn">See All</button>
+            </div>
+            <div class="room-section-wrapper auto-scroll-carousel">
+                <button class="carousel-nav carousel-nav--prev" aria-label="Previous">
+                    <span class="carousel-arrow carousel-arrow--left">
+                        <span class="chevron-left" aria-hidden="true">‹</span>
+                    </span>
+                </button>
+                
+                <div class="room-grid">
+                    <div class="video-card">
+                        <div class="video-image">
+                            <img src="https://img.youtube.com/vi/zumJJUL_ruM/maxresdefault.jpg" alt="Video" data-video-id="zumJJUL_ruM">
+                            <div class="video-overlay"></div>
+                            <button class="play-btn">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="card-content">
+                            <span class="card-category video-category">Our Houzz</span>
+                            <h3 class="card-title">Love of Nature Finds Expression Through Vastu in This Flat</h3>
+                        </div>
+                    </div>
+                    <div class="video-card">
+                        <div class="video-image">
+                            <img src="https://img.youtube.com/vi/NoWyNgAQe34/maxresdefault.jpg" alt="Video" data-video-id="NoWyNgAQe34">
+                            <div class="video-overlay"></div>
+                            <button class="play-btn">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="card-content">
+                            <span class="card-category video-category">Our Houzz</span>
+                            <h3 class="card-title">Lakeside Retreat: Modern Design Meets Natural Beauty</h3>
+                        </div>
+                    </div>
+                    <div class="video-card">
+                        <div class="video-image">
+                            <img src="https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" alt="Video" data-video-id="dQw4w9WgXcQ">
+                            <div class="video-overlay"></div>
+                            <button class="play-btn">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="card-content">
+                            <span class="card-category video-category">Design Tips</span>
+                            <h3 class="card-title">Small Space, Big Style: Maximizing Your Home</h3>
+                        </div>
+                    </div>
+                    <div class="video-card">
+                        <div class="video-image">
+                            <img src="https://img.youtube.com/vi/ScMzIvxBSi4/maxresdefault.jpg" alt="Video" data-video-id="ScMzIvxBSi4">
+                            <div class="video-overlay"></div>
+                            <button class="play-btn">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="card-content">
+                            <span class="card-category video-category">Renovation</span>
+                            <h3 class="card-title">Kitchen Renovation: Before and After</h3>
+                        </div>
+                    </div>
+                    <div class="video-card">
+                        <div class="video-image">
+                            <img src="https://img.youtube.com/vi/kJQP7kiw5Fk/maxresdefault.jpg" alt="Video" data-video-id="kJQP7kiw5Fk">
+                            <div class="video-overlay"></div>
+                            <button class="play-btn">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="card-content">
+                            <span class="card-category video-category">Trends</span>
+                            <h3 class="card-title">2024 Interior Design Trends You Need to Know</h3>
+                        </div>
+                    </div>
+                    <div class="video-card">
+                        <div class="video-image">
+                            <img src="https://img.youtube.com/vi/LDU_Txk06tM/maxresdefault.jpg" alt="Video" data-video-id="LDU_Txk06tM">
+                            <div class="video-overlay"></div>
+                            <button class="play-btn">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="card-content">
+                            <span class="card-category video-category">DIY</span>
+                            <h3 class="card-title">DIY Home Decor Ideas on a Budget</h3>
+                        </div>
+                    </div>
+                    <div class="video-card">
+                        <div class="video-image">
+                            <img src="https://img.youtube.com/vi/9bZkp7q19f0/maxresdefault.jpg" alt="Video" data-video-id="9bZkp7q19f0">
+                            <div class="video-overlay"></div>
+                            <button class="play-btn">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="card-content">
+                            <span class="card-category video-category">Outdoor</span>
+                            <h3 class="card-title">Creating the Perfect Outdoor Living Space</h3>
+                        </div>
+                    </div>
+                    <div class="video-card">
+                        <div class="video-image">
+                            <img src="https://img.youtube.com/vi/fJ9rUzIMcZQ/maxresdefault.jpg" alt="Video" data-video-id="fJ9rUzIMcZQ">
+                            <div class="video-overlay"></div>
+                            <button class="play-btn">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="card-content">
+                            <span class="card-category video-category">Color Guide</span>
+                            <h3 class="card-title">How to Choose the Perfect Paint Colors</h3>
+                        </div>
+                    </div>
+                    <!-- Duplicate cards for seamless loop -->
+                    <div class="video-card">
+                        <div class="video-image">
+                            <img src="https://img.youtube.com/vi/zumJJUL_ruM/maxresdefault.jpg" alt="Video" data-video-id="zumJJUL_ruM">
+                            <div class="video-overlay"></div>
+                            <button class="play-btn">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="card-content">
+                            <span class="card-category video-category">Our Houzz</span>
+                            <h3 class="card-title">Love of Nature Finds Expression Through Vastu in This Flat</h3>
+                        </div>
+                    </div>
+                    <div class="video-card">
+                        <div class="video-image">
+                            <img src="https://img.youtube.com/vi/NoWyNgAQe34/maxresdefault.jpg" alt="Video" data-video-id="NoWyNgAQe34">
+                            <div class="video-overlay"></div>
+                            <button class="play-btn">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="card-content">
+                            <span class="card-category video-category">Our Houzz</span>
+                            <h3 class="card-title">Lakeside Retreat: Modern Design Meets Natural Beauty</h3>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="carousel-nav carousel-nav--next" aria-label="Next">
+                    <span class="carousel-arrow carousel-arrow--right">
+                        <span class="chevron-right" aria-hidden="true">›</span>
+                    </span>
+                </button>
+            </div>
+        </section>
+    </div>
+</main>
+
     <script src="assets/js/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const carousels = document.querySelectorAll('.auto-scroll-carousel');
+            
+            carousels.forEach(function(carouselWrapper) {
+                const carousel = carouselWrapper.querySelector('.room-grid');
+                const prevBtn = carouselWrapper.querySelector('.carousel-nav--prev');
+                const nextBtn = carouselWrapper.querySelector('.carousel-nav--next');
+                let hoverTimeout;
+                
+                carousel.addEventListener('mouseenter', function() {
+                    this.style.animationPlayState = 'paused';
+                    clearTimeout(hoverTimeout);
+                });
+                
+                carousel.addEventListener('mouseleave', function() {
+                    const self = this;
+                    hoverTimeout = setTimeout(function() {
+                        self.style.animationPlayState = 'running';
+                    }, 1000);
+                });
+                
+                prevBtn.addEventListener('click', function() {
+                    carousel.scrollBy({ left: -300, behavior: 'smooth' });
+                });
+                
+                nextBtn.addEventListener('click', function() {
+                    carousel.scrollBy({ left: 300, behavior: 'smooth' });
+                });
+            });
+            
+            // Video hover functionality
+            const videoCards = document.querySelectorAll('.video-card');
+            videoCards.forEach(function(card) {
+                const img = card.querySelector('img[data-video-id]');
+                const playBtn = card.querySelector('.play-btn');
+                
+                if (img && playBtn) {
+                    const videoId = img.getAttribute('data-video-id');
+                    
+                    playBtn.addEventListener('click', function() {
+                        const iframe = document.createElement('iframe');
+                        iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+                        iframe.width = '100%';
+                        iframe.height = '100%';
+                        iframe.frameBorder = '0';
+                        iframe.allow = 'autoplay; encrypted-media';
+                        
+                        const videoImage = card.querySelector('.video-image');
+                        videoImage.innerHTML = '';
+                        videoImage.appendChild(iframe);
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
