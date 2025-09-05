@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Houzz - Home Design & Renovation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'houzz-green': 'hsl(95, 35%, 47%)',
+                        'houzz-dark': 'hsl(210, 12%, 16%)',
+                        'houzz-gray': 'hsl(210, 10%, 57%)',
+                        'houzz-light-gray': 'hsl(210, 17%, 96%)'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="assets/css/output.css" rel="stylesheet">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</head>
+<body class="min-h-screen bg-white">
+    <!-- Header -->
+    <header class="w-full border-b bg-white shadow-sm">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex h-16 items-center justify-between">
+                <!-- Mobile menu button and Logo -->
+                <div class="flex items-center space-x-4">
+                    <!-- Hamburger Button -->
+                    <button 
+                        id="hamburger-btn" 
+                        class="md:hidden background"
+                    >
+                        <div class="menu__icon">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </button>
+                    
+                    <!-- Logo -->
+                    <div class="flex items-center space-x-2">
+                        <a href="/" class="block">
+                            <img src="https://www.houzz.com/res/29282718/pic/houzz_logo.svg?v=29282718" alt="Houzz" class="h-8 w-auto">
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex items-center space-x-8">
+                    <button class="flex items-center space-x-1 px-3 py-2 text-gray-700 hover:text-houzz-green hover:shadow-md hover:bg-gray-50 rounded-full transition-all duration-200">
+                        <span>Photos</span>
+                        <ion-icon name="chevron-down-outline"></ion-icon>
+                    </button>
+                    <button class="flex items-center space-x-1 px-3 py-2 text-gray-700 hover:text-houzz-green hover:shadow-md hover:bg-gray-50 rounded-full transition-all duration-200">
+                        <span>Find Professionals</span>
+                        <ion-icon name="chevron-down-outline"></ion-icon>
+                    </button>
+                    <button class="flex items-center space-x-1 px-3 py-2 text-gray-700 hover:text-houzz-green hover:shadow-md hover:bg-gray-50 rounded-full transition-all duration-200">
+                        <span>Advice</span>
+                        <ion-icon name="chevron-down-outline"></ion-icon>
+                    </button>
+                </nav>
+
+                <!-- Search Bar -->
+                <div class="flex flex-1 max-w-md mx-8 navbar-search">
+                    <div class="relative w-full">
+                        <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m21 21-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                        </svg>
+                        <input
+                            type="search"
+                            placeholder="Search Houzz"
+                            class="pl-10 w-full h-10 rounded-full border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-houzz-green focus:border-transparent"
+                        />
+                    </div>
+                </div>
+
+                <!-- Auth Buttons -->
+                <div class="flex items-center space-x-4">
+                    <button class="hidden sm:inline-flex items-center space-x-2 px-4 py-2 text-gray-700 hover:text-houzz-green transition-colors">
+                        <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                        </svg>
+                        <span>Sign In</span>
+                    </button>
+                    <button class="hidden sm:inline-flex items-center space-x-2 px-4 py-2 border border-houzz-green text-houzz-green hover:bg-houzz-green hover:text-white rounded-md transition-colors">
+                        <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4a2 2 0 00-2-2H8a2 2 0 00-2 2v2M4 6v12a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2z"/>
+                        </svg>
+                        <span>Join as a Pro</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Overlay -->
+    <div 
+        id="overlay" 
+        class="fixed inset-0 bg-black bg-opacity-50 z-40 transition-opacity duration-300 opacity-0 pointer-events-none"
+    ></div>
+
+    <!-- Sidebar -->
+    <div 
+        id="sidebar"
+        class="fixed top-0 left-0 h-full w-80 bg-white shadow-xl z-50 transform transition-transform duration-300 ease-in-out overflow-y-auto -translate-x-full"
+    >
+        <!-- Header with Logo -->
+        <div class="p-6 border-b border-gray-200">
+            <div class="flex items-center gap-2 mb-4">
+                <div class="w-8 h-8 bg-houzz-green rounded-md flex items-center justify-center">
+                    <span class="text-white font-bold text-lg">H</span>
+                </div>
+                <span class="text-xl font-bold text-houzz-green">Houzz</span>
+            </div>
+            
+            <!-- Search Bar -->
+            <div class="relative">
+                <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                </svg>
+                <input
+                    type="text"
+                    placeholder="Search Houzz"
+                    class="w-full pl-10 pr-3 py-2 bg-gray-50 border border-gray-300 rounded-md focus:border-houzz-green focus:outline-none"
+                />
+            </div>
+        </div>
+
+        <!-- Menu Content -->
+        <div class="py-4">
+            <!-- Main Navigation -->
+            <nav class="space-y-1 px-4">
+                <a href="/" class="flex items-center gap-3 px-3 py-3 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors duration-200 group">
+                    <svg class="h-5 w-5 text-gray-500 group-hover:text-houzz-green transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                    </svg>
+                    <span class="font-medium">HOME</span>
+                </a>
+                <a href="/photos" class="flex items-center gap-3 px-3 py-3 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors duration-200 group">
+                    <svg class="h-5 w-5 text-gray-500 group-hover:text-houzz-green transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/>
+                    </svg>
+                    <span class="font-medium">PHOTOS</span>
+                </a>
+                <a href="/professionals" class="flex items-center gap-3 px-3 py-3 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors duration-200 group">
+                    <svg class="h-5 w-5 text-gray-500 group-hover:text-houzz-green transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"/>
+                    </svg>
+                    <span class="font-medium">FIND PROFESSIONALS</span>
+                </a>
+                <a href="/advice" class="flex items-center gap-3 px-3 py-3 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors duration-200 group">
+                    <svg class="h-5 w-5 text-gray-500 group-hover:text-houzz-green transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                    </svg>
+                    <span class="font-medium">ADVICE</span>
+                </a>
+            </nav>
+
+            <!-- About Section -->
+            <div class="mt-8 px-4">
+                <h3 class="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3">
+                    About
+                </h3>
+                <div class="space-y-1">
+                    <a href="/about" class="block px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors duration-200">About</a>
+                    <a href="/careers" class="block px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors duration-200">Careers</a>
+                    <a href="/press" class="block px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors duration-200">Press</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen flex">
+        <!-- Left Section - Find Professionals -->
+        <div class="flex-1 flex items-center justify-center p-8 lg:p-16 relative" style="background-image: url('https://images.pexels.com/photos/3049121/pexels-photo-3049121.jpeg'); background-size: cover; background-position: center;">
+            <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+            <div class="relative z-10 max-w-md w-full space-y-6">
+                <div>
+                    <h1 class="text-4xl lg:text-5xl font-bold text-white mb-4">
+                        The Best Place to Find Professionals
+                    </h1>
+                </div>
+
+                <div class="space-y-4">
+                    <button class="w-full h-12 bg-white text-gray-700 hover:bg-gray-100 rounded-md text-lg font-medium transition-colors flex items-center justify-center space-x-2">
+                        <svg class="w-5 h-5" viewBox="0 0 24 24">
+                            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                        </svg>
+                        <span>Continue with Google</span>
+                    </button>
+                    
+                    <div class="text-center text-gray-300">Or</div>
+                    
+                    <div class="space-y-4">
+                        <input
+                            type="email"
+                            placeholder="Email"
+                            class="w-full h-12 rounded-md border border-gray-600 bg-white bg-opacity-20 text-white placeholder-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-houzz-green focus:border-transparent"
+                        />
+                        <button class="w-full h-12 bg-houzz-dark hover:bg-opacity-90 text-white rounded-md text-lg font-medium transition-colors">
+                            Sign Up with Email
+                        </button>
+                    </div>
+
+                    <div class="text-xs text-gray-300">
+                        By signing up, signing in or continuing, I agree to the
+                        <a href="#" class="text-houzz-green hover:underline">
+                            Houzz Terms of Use
+                        </a>
+                        and acknowledge the
+                        <a href="#" class="text-houzz-green hover:underline">
+                            Houzz Privacy Policy
+                        </a>
+                        . I agree that Houzz may use my email address for marketing purposes. I can opt out at any time through my
+                        <a href="#" class="text-houzz-green hover:underline">
+                            settings
+                        </a>
+                        .
+                    </div>
+                </div>
+
+                <div class="pt-6">
+                    <div class="text-sm text-white font-medium mb-4">Hire a pro:</div>
+                    <div class="flex flex-wrap gap-2">
+                        <button class="px-4 py-2 border border-gray-300 rounded-md text-sm text-white hover:border-houzz-green hover:text-houzz-green transition-colors">
+                            Interior Designers
+                        </button>
+                        <button class="px-4 py-2 border border-gray-300 rounded-md text-sm text-white hover:border-houzz-green hover:text-houzz-green transition-colors">
+                            Contractors
+                        </button>
+                        <button class="px-4 py-2 border border-gray-300 rounded-md text-sm text-white hover:border-houzz-green hover:text-houzz-green transition-colors">
+                            See More
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Section - Pro Signup -->
+        <div class="flex-1 bg-houzz-dark text-white flex items-center justify-center p-8 lg:p-16">
+            <div class="max-w-md w-full space-y-6">
+                <div class="flex items-center space-x-2 mb-8">
+                    <div class="text-2xl font-bold text-houzz-green">houzz</div>
+                    <span class="text-sm font-medium">Pro</span>
+                </div>
+
+                <div>
+                    <h1 class="text-4xl lg:text-5xl font-bold mb-4">
+                        Join as a Professional
+                    </h1>
+                    <p class="text-gray-300 text-lg mb-8">
+                        Connect with millions of homeowners looking for your services
+                    </p>
+                </div>
+
+                <div class="space-y-4">
+                    <input
+                        type="text"
+                        placeholder="Business Name"
+                        class="w-full h-12 rounded-md border border-gray-600 bg-gray-800 text-white placeholder-gray-400 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-houzz-green focus:border-transparent"
+                    />
+                    <input
+                        type="email"
+                        placeholder="Email"
+                        class="w-full h-12 rounded-md border border-gray-600 bg-gray-800 text-white placeholder-gray-400 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-houzz-green focus:border-transparent"
+                    />
+                    <button class="w-full h-12 bg-houzz-green hover:bg-opacity-90 text-white rounded-md text-lg font-medium transition-colors">
+                        Get Started
+                    </button>
+                </div>
+
+                <div class="text-xs text-gray-400 mt-6">
+                    Already have an account?
+                    <a href="#" class="text-houzz-green hover:underline ml-1">
+                        Sign In
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+<section class="main-content"> 
+<h2>Here’s what you can do on Houzz</h2>
+<div class="top-section">
+<div class="card">
+    <img src="https://st.hzcdn.com/static_en-IN/homepage/visitorhp_thumb_photos%402x.jpg" alt="Discover Ideas">
+    <button>Discover Ideas</button>
+</div>
+<div class="card">
+    <img src="https://st.hzcdn.com/static_en-IN/homepage/visitorhp_thumb_professionals%402x.jpg" alt="Browse Pros">
+    <button>Browse Pros</button>
+</div>
+<div class="card">
+    <img src="https://st.hzcdn.com/static_en-IN/homepage/visitorhp_thumb_pro_match%402x.jpg" alt="Suggest Pros">
+    <button>Suggest Pros for Me</button>
+</div>
+</div>
+
+<h2>Browse Ideas by Room</h2>
+<div class="room-section">
+<div class="room-grid">
+    <div class="room-card">
+    <img src="https://images.unsplash.com/photo-1600489000022-c2086d79f9d4?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Kitchen">
+    <p>Kitchen</p>
+    </div>
+    <div class="room-card">
+    <img src="https://plus.unsplash.com/premium_photo-1676823570606-4398fb1415ab?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8YmF0aCUyMGRlc2lnbnxlbnwwfHwwfHx8MA%3D%3D" alt="Bath">
+    <p>Bath</p>
+    </div>
+    <div class="room-card">
+    <img src="https://media.istockphoto.com/id/1191685303/photo/stylish-bedroom-interior-in-trendy-blue.webp?a=1&b=1&s=612x612&w=0&k=20&c=f3bNKflpzVIlj2b2u2GafbtTe5OxeobSwbgyf-s52bg=" alt="Bedroom">
+    <p>Bedroom</p>
+    </div>
+    <div class="room-card">
+    <img src="https://images.unsplash.com/photo-1659938425098-6788938c89de?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8bGVhdmluZyUyMHJvb20lMjBkZXNpZ258ZW58MHx8MHx8fDA%3D" alt="Living">
+    <p>Living</p>
+    </div>
+    <div class="room-card">
+    <img src="https://images.unsplash.com/photo-1706820229870-f9a8c6dac193?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8ZGluaW5nJTIwcm9vbSUyMGRlc2lnbnxlbnwwfHwwfHx8MA%3D%3D" alt="Dining">
+    <p>Dining</p>
+    </div>
+    <div class="room-card">
+    <img src="https://images.unsplash.com/photo-1613685302957-3a6fc45346ef?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8b3V0ZG9vciUyMGRlc2lnbnxlbnwwfHwwfHx8MA%3D%3D" alt="Outdoor">
+    <p>Outdoor</p>
+    </div>
+    <div class="room-card">
+    <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmFieSUyMHJvb218ZW58MHx8MHx8fDA%3D" alt="Baby & Kids">
+    <p>Baby & Kids</p>
+    </div>
+    <div class="room-card">
+    <img src="https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aG9tZSUyMG9mZmljZXxlbnwwfHwwfHx8MA%3D%3D" alt="Home Office">
+    <p>Home Office</p>
+    </div>
+    <div class="room-card">
+    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8d2FyZHJvYmV8ZW58MHx8MHx8fDA%3D" alt="Wardrobe">
+    <p>Wardrobe</p>
+    </div>
+    <div class="room-card">
+    <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZXh0ZXJpb3IlMjBob3VzZXxlbnwwfHwwfHx8MA%3D%3D" alt="Exterior">
+    <p>Exterior</p>
+    </div>
+    <div class="room-card">
+    <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZW50cnl3YXl8ZW58MHx8MHx8fDA%3D" alt="Entry">
+    <p>Entry</p>
+    </div>
+    <div class="room-card">
+    <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aG9tZSUyMGd5bXxlbnwwfHwwfHx8MA%3D%3D" alt="Home Gym">
+    <p>Home Gym</p>
+    </div>
+    <div class="room-card">
+    <img src="https://images.unsplash.com/photo-1572721546624-05bf65ad7679?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aG9tZSUyMGJhcnxlbnwwfHwwfHx8MA%3D%3D" alt="Home Bar">
+    <p>Home Bar</p>
+    </div>
+    <div class="room-card">
+    <img src="https://images.unsplash.com/photo-1586105251261-72a756497a11?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y29ycmlkb3J8ZW58MHx8MHx8fDA%3D" alt="Corridor">
+    <p>Corridor</p>
+    </div>
+</div>
+</div>
+</section>
+
+    <script src="assets/js/script.js"></script>
+</body>
+</html>
